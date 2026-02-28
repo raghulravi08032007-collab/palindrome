@@ -7,25 +7,34 @@ public class PalindroneCheckerApp  {
     public static void main(String[] args) {
 
         // Original String
-        String original = "level";
+        String input = "radar";
 
         System.out.println("========================================");
         System.out.println("        PALINDROME CHECKER APP          ");
         System.out.println("========================================");
 
-        System.out.println("Original String: " + original);
+        System.out.println("Input String: " + input);
 
-        // Reverse string using for loop
-        String reversed = "";
+        // Convert string to character array
+        char[] characters = input.toCharArray();
 
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);   // String concatenation
+        // Two-pointer technique
+        int start = 0;
+        int end = characters.length - 1;
+
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (characters[start] != characters[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
         }
 
-        System.out.println("Reversed String: " + reversed);
-
-        // Compare original and reversed using equals()
-        if (original.equals(reversed)) {
+        // Display result
+        if (isPalindrome) {
             System.out.println("Result: The given string is a PALINDROME.");
         } else {
             System.out.println("Result: The given string is NOT a palindrome.");

@@ -6,8 +6,19 @@ public class PalindroneCheckerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("Welcome to Palindrome Checker App Management System");
-        System.out.println("Modify this logic to usecase 2");
+        // Application Name
+        System.out.println("========================================");
+        System.out.println("      PALINDROME CHECKER APPLICATION    ");
+        System.out.println("========================================");
 
+        // Application Version
+        System.out.println("Version : 1.0");
+
+        // Welcome Message
+        System.out.println("Welcome to the Palindrome Checker App!");
+
+        // Flow message
+        System.out.println("Application initialized successfully.");
+        System.out.println("Proceeding to next use case...");
     }
 }

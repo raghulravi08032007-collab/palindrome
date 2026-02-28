@@ -1,6 +1,8 @@
-// Use Case: UC-5
-// Stack-Based Palindrome Checker
+// Use Case: UC-6
+// Queue + Stack Based Palindrome Check
 
+import java.util.Queue;
+import java.util.LinkedList;
 import java.util.Stack;
 
 public class PalindroneCheckerApp {
@@ -14,23 +16,30 @@ public class PalindroneCheckerApp {
         System.out.println("========================================");
         System.out.println("Input String: " + input);
 
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
+
+        // Create Stack (LIFO)
         Stack<Character> stack = new Stack<>();
 
-        // Push characters into stack
+        // Enqueue and Push characters
         for (int i = 0; i < input.length(); i++) {
-            stack.push(input.charAt(i));
+            char ch = input.charAt(i);
+            queue.add(ch);      // Enqueue
+            stack.push(ch);     // Push
         }
 
         boolean isPalindrome = true;
 
-        // Pop and compare
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != stack.pop()) {
+        // Compare Dequeue vs Pop
+        while (!queue.isEmpty()) {
+            if (queue.remove() != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
         }
 
+        // Display result
         if (isPalindrome) {
             System.out.println("Result: The given string is a PALINDROME.");
         } else {

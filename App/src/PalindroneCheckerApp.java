@@ -1,39 +1,36 @@
-// version 2.0
-// author Abc
-// useCase 2:
+// Use Case: UC-5
+// Stack-Based Palindrome Checker
 
-public class PalindroneCheckerApp  {
+import java.util.Stack;
+
+public class PalindroneCheckerApp {
 
     public static void main(String[] args) {
 
-        // Original String
-        String input = "radar";
+        String input = "madam";
 
         System.out.println("========================================");
         System.out.println("        PALINDROME CHECKER APP          ");
         System.out.println("========================================");
-
         System.out.println("Input String: " + input);
 
-        // Convert string to character array
-        char[] characters = input.toCharArray();
+        Stack<Character> stack = new Stack<>();
 
-        // Two-pointer technique
-        int start = 0;
-        int end = characters.length - 1;
+        // Push characters into stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        while (start < end) {
-            if (characters[start] != characters[end]) {
+        // Pop and compare
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            start++;
-            end--;
         }
 
-        // Display result
         if (isPalindrome) {
             System.out.println("Result: The given string is a PALINDROME.");
         } else {

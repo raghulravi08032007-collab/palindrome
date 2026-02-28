@@ -7,7 +7,6 @@ public class PalindroneCheckerApp {
 
     public static void main(String[] args) {
 
-        // Hardcoded string
         String input = "madam";
 
         System.out.println("========================================");
@@ -15,7 +14,6 @@ public class PalindroneCheckerApp {
         System.out.println("========================================");
         System.out.println("Input String: " + input);
 
-        // Create Stack
         Stack<Character> stack = new Stack<>();
 
         // Push characters into stack
@@ -33,7 +31,6 @@ public class PalindroneCheckerApp {
             }
         }
 
-        // Display result
         if (isPalindrome) {
             System.out.println("Result: The given string is a PALINDROME.");
         } else {

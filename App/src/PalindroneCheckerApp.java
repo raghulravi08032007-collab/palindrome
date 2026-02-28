@@ -1,31 +1,43 @@
-// version 2.0
-// author Abc
-// useCase 2:
+// Use Case: UC-5
+// Stack-Based Palindrome Checker
 
-public class PalindroneCheckerApp  {
+import java.util.Stack;
+
+public class PalindroneCheckerApp {
 
     public static void main(String[] args) {
 
         // Hardcoded string
-        String word = "madam";
+        String input = "madam";
 
         System.out.println("========================================");
         System.out.println("        PALINDROME CHECKER APP          ");
         System.out.println("========================================");
+        System.out.println("Input String: " + input);
 
-        System.out.println("Hardcoded Word: " + word);
+        // Create Stack
+        Stack<Character> stack = new Stack<>();
 
-        // Reverse the string
-        String reversed = "";
-        for (int i = word.length() - 1; i >= 0; i--) {
-            reversed = reversed + word.charAt(i);
+        // Push characters into stack
+        for (int i = 0; i < input.length(); i++) {
+            stack.push(input.charAt(i));
         }
 
-        // Check palindrome using if-else
-        if (word.equals(reversed)) {
-            System.out.println("Result: The given word is a PALINDROME.");
+        boolean isPalindrome = true;
+
+        // Pop and compare
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
+        if (isPalindrome) {
+            System.out.println("Result: The given string is a PALINDROME.");
         } else {
-            System.out.println("Result: The given word is NOT a palindrome.");
+            System.out.println("Result: The given string is NOT a palindrome.");
         }
 
         System.out.println("Program execution completed.");

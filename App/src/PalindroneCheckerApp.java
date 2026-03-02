@@ -4,46 +4,60 @@
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class PalindroneCheckerApp   {
+public class PalindroneCheckerApp{
 
     /**
-     * Application entry point for UC10.
+     * Application entry point for UC11.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        String input = "A man a plan a canal Panama";
+        String input = "madam";
 
         System.out.println("========================================");
         System.out.println("        PALINDROME CHECKER APP          ");
         System.out.println("========================================");
-        System.out.println("Original Input: " + input);
+        System.out.println("Input String: " + input);
 
-        // Normalize the string
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        // Create service object
+        PalindromeService service = new PalindromeService();
 
-        System.out.println("Normalized Input: " + normalized);
+        boolean result = service.checkPalindrome(input);
 
-        boolean isPalindrome = true;
-
-        // Compare characters from both ends
-        for (int i = 0; i < normalized.length() / 2; i++) {
-
-            if (normalized.charAt(i) !=
-                    normalized.charAt(normalized.length() - 1 - i)) {
-
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Display result
-        if (isPalindrome) {
+        if (result) {
             System.out.println("Result: The given string is a PALINDROME.");
         } else {
             System.out.println("Result: The given string is NOT a palindrome.");
         }
 
         System.out.println("Program execution completed.");
+    }
+}
+
+/**
+ * Service class that contains palindrome logic.
+ */
+class PalindromeService {
+
+    /**
+     * Checks whether the input string is a palindrome.
+     * @param input Input string
+     * @return true if palindrome, false otherwise
+     */
+    public boolean checkPalindrome(String input) {
+
+        int start = 0;
+        int end = input.length() - 1;
+
+        // Compare characters moving inward
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+
+        return true;
     }
 }

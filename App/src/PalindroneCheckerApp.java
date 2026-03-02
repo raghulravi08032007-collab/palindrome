@@ -8,52 +8,66 @@ public class PalindroneCheckerApp{
 
     public static void main(String[] args) {
 
-        String input = "level";
+        String input = "A man a plan a canal Panama";
 
         System.out.println("========================================");
-        System.out.println("        PALINDROME CHECKER APP          ");
+        System.out.println("      PALINDROME PERFORMANCE TEST       ");
         System.out.println("========================================");
+
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        // 1️⃣ Two Pointer Approach
+        long start1 = System.nanoTime();
+        boolean result1 = twoPointerCheck(normalized);
+        long end1 = System.nanoTime();
+
+        // 2️⃣ Stack Approach
+        long start2 = System.nanoTime();
+        boolean result2 = stackCheck(normalized);
+        long end2 = System.nanoTime();
+
         System.out.println("Input: " + input);
+        System.out.println("Normalized: " + normalized);
+        System.out.println();
 
-        // Inject strategy at runtime
-        PalindromeStrategy strategy = new StackStrategy();
+        System.out.println("Two Pointer Result : " + result1);
+        System.out.println("Execution Time (ns): " + (end1 - start1));
 
-        boolean result = strategy.check(input);
+        System.out.println();
 
-        System.out.println("Is Palindrome? : " + result);
+        System.out.println("Stack Result       : " + result2);
+        System.out.println("Execution Time (ns): " + (end2 - start2));
+
+        System.out.println();
         System.out.println("Program execution completed.");
     }
-}
 
-/*
- ==========================================================
- INTERFACE - PalindromeStrategy
- ==========================================================
-*/
+    // Two Pointer Algorithm
+    private static boolean twoPointerCheck(String input) {
 
-interface PalindromeStrategy {
+        int start = 0;
+        int end = input.length() - 1;
 
-    boolean check(String input);
-}
+        while (start < end) {
+            if (input.charAt(start) != input.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
 
-/*
- ==========================================================
- CLASS - StackStrategy
- ==========================================================
-*/
-
-class StackStrategy implements PalindromeStrategy {
-
-    public boolean check(String input) {
+    // Stack Based Algorithm
+    private static boolean stackCheck(String input) {
 
         java.util.Stack<Character> stack = new java.util.Stack<>();
 
-        // Push characters to stack
         for (char c : input.toCharArray()) {
             stack.push(c);
         }
 
-        // Compare by popping from stack
         for (char c : input.toCharArray()) {
             if (c != stack.pop()) {
                 return false;

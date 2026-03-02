@@ -4,52 +4,46 @@
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class PalindroneCheckerApp  {
+public class PalindroneCheckerApp   {
 
     /**
-     * Application entry point for UC9.
+     * Application entry point for UC10.
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "A man a plan a canal Panama";
 
         System.out.println("========================================");
         System.out.println("        PALINDROME CHECKER APP          ");
         System.out.println("========================================");
-        System.out.println("Input String: " + input);
+        System.out.println("Original Input: " + input);
 
-        boolean result = check(input, 0, input.length() - 1);
+        // Normalize the string
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        if (result) {
+        System.out.println("Normalized Input: " + normalized);
+
+        boolean isPalindrome = true;
+
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
+
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
+        if (isPalindrome) {
             System.out.println("Result: The given string is a PALINDROME.");
         } else {
             System.out.println("Result: The given string is NOT a palindrome.");
         }
 
         System.out.println("Program execution completed.");
-    }
-
-    /**
-     * Recursively checks whether a string is palindrome.
-     * @param s Input string
-     * @param start Starting index
-     * @param end Ending index
-     * @return true if palindrome, otherwise false
-     */
-    private static boolean check(String s, int start, int end) {
-
-        // Base condition: If start crosses end
-        if (start >= end) {
-            return true;
-        }
-
-        // If characters do not match
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call
-        return check(s, start + 1, end - 1);
     }
 }
